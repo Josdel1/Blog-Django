@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+<style>
+    .form-signin {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: auto;
+    }
+    
+    .form-signin .checkbox {
+      font-weight: 400;
+    }
+    
+    .form-signin .form-floating:focus-within {
+      z-index: 2;
+    }
+    
+    .form-signin input[type="email"] {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    
+    .form-signin input[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+</style>
+
+<div class="form-signin">
+    
+    <h1 class="text-center py-1">Log In</h1>
+    {% for message in messages %}
+    <p>{{message}}</p>
+    {% endfor %}
+    {% if next %}
+      {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
+      {% else %}
+        <p>Please login to see this page.</p>
+      {% endif %}
+    {% endif %}
+    <form method="POST">{% csrf_token %}
+      <div class="form-floating">
+        <input type="text" class="form-control" name="username" placeholder="Username">
+        <label>Username</label>
+      </div>
+      <div class="form-floating">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+        <label>Password</label>
+      </div>
+  
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Create a post</h1>
+    <form method="POST" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Title:</label>
+            {{form.title}}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Content</label>
+            {{form.content}}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Image</label>
+            {{form.thumbnail}}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Author</label>
+            {{form.author}}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Slug</label>
+            {{form.slug}}
+        </div>
+        <button class='btn btn-primary' type='submit'>{{ view_type|title }}</button>
+    </form>
+</div>
+{% endblock content %}

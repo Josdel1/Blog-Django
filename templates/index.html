@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+{% block content %}
+
+<div class="row">
+{% for posts in object_list %}
+<div class="card" style="width: 18rem;">
+    <img src="{{ posts.thumbnail.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">
+        <a href="{{ posts.get_absolute_url }}">{{ posts.title }}
+        </a>
+        </h5>
+        <p class="card-text">created by {{posts.author }}</p>
+        <p class="card-text">{{ posts.content|truncatechars:40 }}</p>
+        <hr />
+        <p class="card-text">
+            Posted {{ posts.publish_date|timesince }} ago
+        </p>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endblock content%}
